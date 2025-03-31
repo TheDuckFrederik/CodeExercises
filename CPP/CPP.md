@@ -1,2 +1,2 @@
 # C++
-- ### [Guess The Number](/CPP/gdn.cpp)
+- ### [Guess The Number](/CPP/gtn.cpp)
