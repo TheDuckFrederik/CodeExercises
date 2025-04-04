@@ -79,7 +79,6 @@ Book createBook() {
 }
 //
 int main() {
-    char proceedT = 'y';
     char proceed = 'y';
     int itr = 0;
     int menu;
@@ -138,17 +137,15 @@ int main() {
             //
             case 4:
                 proceed = 'n';
-                proceedT = 'n';
                 break;
         }
         //
-        if (proceedT == 'y' | proceedT == 'Y') {
+        if (proceed == 'y' || proceed == 'Y') {
             cout << "Do you wish to continue (y/n)?\n---> ";
             cin >> proceed;
-            proceedT = proceed;
             cin.ignore();
             //
-            if (proceed == 'y' | proceed == 'Y') {
+            if (proceed == 'y' || proceed == 'Y') {
                 clearScreen();
             }
         }
