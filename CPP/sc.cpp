@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
     int num1, num2, type;
-    double result; // Changed result to double
+    double result;
     char proceedC = 'y';
 
     while (proceedC == 'y' || proceedC == 'Y') {
@@ -56,7 +56,7 @@ int main() {
                     cout << "\n----------------------------------------------------------------------\nSyntax error on the Second Number. Please enter a number that isn't 0.\n----------------------------------------------------------------------\n\n";
                     continue;
                 }
-                result = static_cast<double>(num1) / num2; // Ensure floating-point division
+                result = static_cast<double>(num1) / num2;
                 cout << "\n" << num1 << " / " << num2 << " = " << result << "\n\n";
                 break;
         }
