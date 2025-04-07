@@ -8,21 +8,19 @@ class Person {
         int Age;
     //
     public:
-        void setData(string personName, int personAge) {
-            Name = personName;
-            Age = personAge;
-        }
+        Person(string defName = "Unknown", int defAge = 0) : Name(defName), Age(defAge) {}
         //
         void printPerson() {
-            cout << "Name: " << Name << "\nAge: " << Age;
+            cout << "Name: " << Name << "\nAge: " << Age << "\n";
         }
 };
 //
 int main() {
     Person p1;
+    Person p2("Bob", 31);
     //
-    p1.setData("Bob", 31);
     p1.printPerson();
+    p2.printPerson();
     //
     return 0;
 }
