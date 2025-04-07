@@ -8,17 +8,16 @@ proc main() =
     while true:
         let randNum = rand(1, 10);
         #
-        let guessNum = readLine("Guess a number between 1 and 10: ");
+        let guessNum = readLine("Guess the number between 1 - 10:\n---> ");
         #
         if guessNum == randNum:
-            echo ("Lucky you guessed correctly!\nThe number was: ", randNum);
+            echo ("----------------------------------------------------------------------\nHurray, you guessed correctly! Indeed the number was ", randNum, "\n----------------------------------------------------------------------\n\n");
         else:
-            echo ("Better luck next time pal\nThe number was: ", randNum);
+            echo ("----------------------------------------------------------------------\nYou didn't guess correctly! The correct number was " << randNum << "\nBetter luck next time.\n----------------------------------------------------------------------\n\n");
         #
-        let playAgain = readLine("Do you want to play again? (y/n): ");
+        let playAgain = readLine("Wish to continue? (Y/n)\n---> ");
         if playAgain == "y":
             continue;
         else:
-            echo ("Thanks for playing!");
             break;
 main()
