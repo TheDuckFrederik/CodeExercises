@@ -76,6 +76,25 @@ class Student : public Member {
         void printMemberDetails() { cout << "Name: " << Name << "\nId: " << Id << "\nGrade Level: " << GradeLevel << "\n"; }
 };
 //
+class Staff : public Member {
+    private:
+        string Position;
+    //
+    public:
+        Staff(string name, int id, string position) {
+            Name = name;
+            Id = id;
+            Position = position;
+        }
+        //
+        void printMemberDetails() { cout << "Name: " << Name << "\nId: " << Id << "\nPosition: " << Position << "\n"; }
+};
+//
+class Library {
+    private:
+
+};
+//
 int main() {
     return 0;
 }
