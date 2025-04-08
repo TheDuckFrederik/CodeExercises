@@ -235,7 +235,44 @@ int main() {
 - Ensure that the `Age` cannot be set to a negative number.
 
 ```cpp
-
+#include <iostream>
+//
+using namespace std;
+//
+class Person {
+    private:
+        string Name;
+        int Age;
+    //
+    public:
+        void setName(string name) {
+            Name = name;
+        }
+        //
+        void setAge(int age) {
+            if (age >= 0) Age = age;
+        }
+        //
+        string getName() {
+            return Name;
+        }
+        //
+        int getAge() {
+            return Age;
+        }
+};
+//
+int main() {
+    Person p1;
+    //
+    p1.setName("Bob");
+    p1.setAge(31);
+    //
+    cout << "Name: " << p1.getName() << "\n";
+    cout << "Age: " << p1.getAge() << "\n";
+    //
+    return 0;
+}
 ```
 
 ---
@@ -246,7 +283,39 @@ int main() {
 - Understand how to use `const` with member functions to make them read-only.
 
 ```cpp
-
+#include <iostream>
+//
+using namespace std;
+//
+class Person {
+    private:
+        string Name;
+        int Age;
+    //
+    public:
+        void setName(string name) {
+            Name = name;
+        }
+        //
+        void setAge(int age) {
+            if (age >= 0) Age = age;
+        }
+        //
+        void printPerson() const {
+            cout << "Name: " << Name << "\n" << "Age: " << Age << "\n";
+        }
+};
+//
+int main() {
+    Person p1;
+    //
+    p1.setName("Bob");
+    p1.setAge(31);
+    //
+    p1.printPerson();
+    //
+    return 0;
+}
 ```
 
 ---
@@ -275,7 +344,62 @@ int main() {
 - `Employee` should inherit from `Person` and have additional attributes such as `Salary`.
 
 ```cpp
-
+#include <iostream>
+//
+using namespace std;
+//
+class Person {
+    private:
+        string Name;
+        int Age;
+    //
+    public:
+        void setName(string name) {
+            Name = name;
+        }
+        //
+        void setAge(int age) {
+            if (age >= 0) Age = age;
+        }
+        //
+        void printPerson() {
+            cout << "Name: " << Name << "\n" << "Age: " << Age << "\n";
+        }
+};
+//
+class Employee: public Person {
+    private:
+        double Salary;
+    //
+    public:
+        void setSalary(double salary) {
+            Salary = salary;
+        }
+        //
+        void printEmployee() {
+            printPerson();
+            cout << "Salary: " << Salary << "\n";
+        }
+};
+//
+int main() {
+    Person p1;
+    //
+    p1.setName("Bob");
+    p1.setAge(31);
+    //
+    p1.printPerson();
+    //
+    Employee p2;
+    //
+    p2.setName("Unai");
+    p2.setAge(18);
+    p2.setSalary(347.80);
+    //
+    p2.printEmployee();
+    //
+    return 0;
+}
 ```
 
 ---

@@ -16,12 +16,8 @@ class Person {
             if (age >= 0) Age = age;
         }
         //
-        string getName() {
-            return Name;
-        }
-        //
-        int getAge() {
-            return Age;
+        void printPerson() const {
+            cout << "Name: " << Name << "\n" << "Age: " << Age << "\n";
         }
 };
 //
@@ -31,8 +27,7 @@ int main() {
     p1.setName("Bob");
     p1.setAge(31);
     //
-    cout << "Name: " << p1.getName() << "\n";
-    cout << "Age: " << p1.getAge() << "\n";
+    p1.printPerson();
     //
     return 0;
 }
