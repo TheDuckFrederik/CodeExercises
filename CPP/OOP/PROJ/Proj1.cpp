@@ -25,12 +25,12 @@ class Book : public Item {
     //
     public:
         Book(string title, string author, int pages) {
-            Title = title;
-            Author = author;
+            setTitle(title);
+            setAuthor(author);
             Pages = pages;
         }
         //
-        void printDetails() { cout << "Title: " << Title << "\nAuthor: " << Author << "\nNumber of pages: " << Pages << "\n"; }
+        void printDetails() { cout << "Title: " << getTitle() << "\nAuthor: " << getAuthor() << "\nNumber of pages: " << Pages << "\n"; }
 };
 //
 class Magazine : public Item {
@@ -39,12 +39,12 @@ class Magazine : public Item {
     //
     public:
         Magazine(string title, string author, int issueNumber) {
-            Title = title;
-            Author = author;
+            setTitle(title);
+            setAuthor(author);
             IssueNumber = issueNumber;
         }
         //
-        void printDetails() { cout << "Title: " << Title << "\nAuthor: " << Author << "\nIssue Number: " << IssueNumber << "\n"; }
+        void printDetails() { cout << "Title: " << getTitle() << "\nAuthor: " << getAuthor() << "\nIssue Number: " << IssueNumber << "\n"; }
 };
 //
 class Member {
@@ -68,12 +68,12 @@ class Student : public Member {
     //
     public:
         Student(string name, int id, string gradeLevel) {
-            Name = name;
-            Id = id;
+            setName(name);
+            setId(id);
             GradeLevel = gradeLevel;
         }
         //
-        void printMemberDetails() { cout << "Name: " << Name << "\nId: " << Id << "\nGrade Level: " << GradeLevel << "\n"; }
+        void printMemberDetails() { cout << "Name: " << getName() << "\nId: " << getId() << "\nGrade Level: " << GradeLevel << "\n"; }
 };
 //
 class Staff : public Member {
@@ -82,12 +82,12 @@ class Staff : public Member {
     //
     public:
         Staff(string name, int id, string position) {
-            Name = name;
-            Id = id;
+            setName(name);
+            setId(id);
             Position = position;
         }
         //
-        void printMemberDetails() { cout << "Name: " << Name << "\nId: " << Id << "\nPosition: " << Position << "\n"; }
+        void printMemberDetails() { cout << "Name: " << getName() << "\nId: " << getId() << "\nPosition: " << Position << "\n"; }
 };
 //
 class Library {
