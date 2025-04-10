@@ -35,16 +35,19 @@ class Book : public Item {
 //
 class Magazine : public Item {
     private:
+        int Pages;
         int IssueNumber;
     //
     public:
-        Magazine(string title, string author, int issueNumber) {
-            setTitle(title);
-            setAuthor(author);
-            IssueNumber = issueNumber;
-        }
+        void setPages(int pages) { Pages = pages; }
         //
-        void printDetails() { cout << "Title: " << getTitle() << "\nAuthor: " << getAuthor() << "\nIssue Number: " << IssueNumber << "\n"; }
+        void setIssueNumber(int issueNumber) { IssueNumber = issueNumber; }
+        //
+        int getPages() { return Pages; }
+        //
+        int getIssueNumber() { return IssueNumber; }
+        //
+        void printDetails() { cout << "Title: " << getTitle() << "\nAuthor: " << getAuthor() << "\nNumber of Pages: " << Pages << "\nIssue Number: " << IssueNumber << "\n"; }
 };
 //
 class Member {
