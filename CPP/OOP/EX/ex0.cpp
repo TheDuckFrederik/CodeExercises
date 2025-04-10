@@ -14,7 +14,7 @@ int main() {
     p1.Name = "Bob";
     p1.Age = 31;
     //
-    cout << "Name: " << p1.Name << "\nAge: " << p1.Age;
+    cout << "Name: " << p1.Name << "\nAge: " << p1.Age << "\n";
     //
     return 0;
 }

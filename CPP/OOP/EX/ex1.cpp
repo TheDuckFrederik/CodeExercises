@@ -14,7 +14,7 @@ class Person {
         }
         //
         void printPerson() {
-            cout << "Name: " << Name << "\nAge: " << Age;
+            cout << "Name: " << Name << "\nAge: " << Age << "\n";
         }
 };
 //

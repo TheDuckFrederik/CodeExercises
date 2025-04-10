@@ -11,7 +11,7 @@ class Person {
         Person(string defName = "Unknown", int defAge = 0) : Name(defName), Age(defAge) {}
         //
         ~Person() {
-            cout << "Nooooooooooo, you monster.\nYOU DESTROYED " << Name;
+            cout << "Nooooooooooo, you monster.\nYOU DESTROYED " << Name << "\n";
         }
         //
         void printPerson() {
