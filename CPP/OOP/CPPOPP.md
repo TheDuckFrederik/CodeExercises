@@ -9,6 +9,7 @@
 - ### [Exercise 4](/CPP/OOP/EX/ex4.cpp)
 - ### [Exercise 5](/CPP/OOP/EX/ex5.cpp)
 - ### [Exercise 6](/CPP/OOP/EX/ex6.cpp)
+- ### [Exercise 7](/CPP/OOP/EX/ex7.cpp)
 ***
 ## Projects:
 - ### [Project 1](/CPP/OOP/PROJ/Proj1.cpp)
