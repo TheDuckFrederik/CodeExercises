@@ -512,7 +512,7 @@ int main() {
 - Overload operators like `+` and `==` for custom classes to allow intuitive operations.
 
 ```cpp
-#include<iostream>
+#include <iostream>
 //
 using namespace std;
 //
