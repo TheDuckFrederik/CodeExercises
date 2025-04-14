@@ -18,6 +18,8 @@ class Player {
         int RoundPoints[10];
         char RoundAction[10];
         int RoundAtackedPlayer[10];
+        //
+        string Details[12];
     //
     public:
         void setName(string name) { Name = name; }
@@ -31,14 +33,6 @@ class Player {
         void setRoundAction(char roundAction, int round) { RoundAction[round] = roundAction; }
         //
         void setRoundAtackedPlayer(int roundAtackedPlayer, int round) { RoundAtackedPlayer[round] = roundAtackedPlayer; }
-        //
-        int getCurrentPoints() { return CurrentPoints; }
-        //
-        int getRoundPoints(int round) { return RoundPoints[round]; }
-        //
-        char getRoundAction(int round) { return RoundAction[round]; }
-        //
-        int getRoundAtackedPlayer(int round) { return RoundAtackedPlayer[round]; }
         //
         void makeSpaces() {
             switch (Name.length()) {
@@ -78,13 +72,19 @@ class Player {
             }
         }
         //
-        void printPlayerName() {
-            makeSpaces();
-            //
-            cout << "|" << SpaceL << Name << SpaceR << "|" << BotLines << "\n";
-        }
+        void setPlayerInfo() { Details[0] = "|", SpaceL, Name, SpaceR, "|", BotLines; }
         //
-        void printPlayerDatails() { printPlayerName(); }
+        string getPlayerName() { return Name; }
+        //
+        int getCurrentPoints() { return CurrentPoints; }
+        //
+        int getRoundPoints(int round) { return RoundPoints[round]; }
+        //
+        char getRoundAction(int round) { return RoundAction[round]; }
+        //
+        int getRoundAtackedPlayer(int round) { return RoundAtackedPlayer[round]; }
+        //
+        string getPlayerNameF() { return Details[0]; }
 };
 //
 void printHeader(int round) {
@@ -143,7 +143,7 @@ void startMenu() {
                 //
                 cout << "\n\n\n\nSYNTAX ERR!\nWAIT PLEASE\n\n\n\n";
                 //
-                this_thread::sleep_for(chrono::seconds(4));
+                this_thread::sleep_for(chrono::seconds(3));
                 //
                 clearScreen();
                 break;
@@ -152,11 +152,19 @@ void startMenu() {
     }
 }
 //
-int main() {
-    Player Oscar, Ariadna, Ivan, JiaYi, Colapuerto;
-    int Round;
+void Game() {
+    int Round = 1;
+    int Turn = 0;
     //
-    startMenu();
+    char Confirm;
+    //
+    bool stayG = true;
+    bool stayR = true;
+    bool stayT = true;
+    //
+    Player Oscar, Ariadna, Ivan, JiaYi, Colapuerto;
+    char Action;
+    string atckedPlayer;
     //
     Oscar.setName("Oscar");
     Ariadna.setName("Ariadna");
@@ -164,13 +172,55 @@ int main() {
     JiaYi.setName("Jia Yi");
     Colapuerto.setName("Colapuerto");
     //
-    printHeader(5);
+    string Players[5] = {Oscar.getPlayerName(), Ariadna.getPlayerName(), Ivan.getPlayerName(), JiaYi.getPlayerName(), Colapuerto.getPlayerName()};
     //
-    Oscar.printPlayerDatails();
-    Ariadna.printPlayerDatails();
-    Ivan.printPlayerDatails();
-    JiaYi.printPlayerDatails();
-    Colapuerto.printPlayerDatails();
+    while (stayG == true) {
+        while (stayR == true) {
+            cout << "Que accion desea realizar " << Players[Turn] << "? (A/D)\n---> ";
+            cin >> Action;
+            //
+            if (Action == 'A' || Action == 'a') {
+                cout << Players[Turn] << " chose to Attack\n\n";
+                //
+                Turn ++;
+            } else if (Action == 'D' || Action == 'd') {
+                cout << "Estas seguro? (y/n)\n---> ";
+                cin >> Confirm;
+                //
+                if (Confirm == 'y' || Confirm == 'Y') {
+                    cout << Players[Turn] << " chose to Defend\n\n";
+                    //
+                    Turn ++;
+                } else if (Confirm == 'n' || Confirm == 'N') {
+                    cout << "Ok, reseting! \n";
+                    this_thread::sleep_for(chrono::seconds(3));
+                    clearScreen();
+                } else {
+                    clearScreen();
+                    //
+                    cout << "\n\n\n\nSYNTAX ERR!\nWAIT PLEASE\n\n\n\n";
+                    //
+                    this_thread::sleep_for(chrono::seconds(3));
+                    //
+                    clearScreen();
+                }
+            } else {
+                clearScreen();
+                //
+                cout << "\n\n\n\nSYNTAX ERR!\nWAIT PLEASE\n\n\n\n";
+                //
+                this_thread::sleep_for(chrono::seconds(3));
+                //
+                clearScreen();
+            }
+        }
+    }
+}
+//
+int main() {
+    startMenu();
+    //
+    Game();
     //
     return 0;
 }
