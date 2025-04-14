@@ -7,6 +7,7 @@ using namespace std;
 class Player {
     private:
         string Name;
+        int Id;
         //
         string SpaceL;
         string SpaceR;
@@ -17,12 +18,14 @@ class Player {
         int CurrentPoints = InitialPoints;
         int RoundPoints[10];
         char RoundAction[10];
-        int RoundAtackedPlayer[10];
+        string RoundAtackedPlayer[10];
         //
         string Details[12];
     //
     public:
         void setName(string name) { Name = name; }
+        //
+        void setId(int id) { Id = id; }
         //
         void setSpaceL(string spaceL) { SpaceL = spaceL; }
         //
@@ -32,7 +35,7 @@ class Player {
         //
         void setRoundAction(char roundAction, int round) { RoundAction[round] = roundAction; }
         //
-        void setRoundAtackedPlayer(int roundAtackedPlayer, int round) { RoundAtackedPlayer[round] = roundAtackedPlayer; }
+        void setRoundAtackedPlayer(string roundAtackedPlayer, int round) { RoundAtackedPlayer[round] = roundAtackedPlayer; }
         //
         void makeSpaces() {
             switch (Name.length()) {
@@ -76,15 +79,15 @@ class Player {
         //
         string getPlayerName() { return Name; }
         //
+        string getPlayerNameF() { return Details[0]; }
+        //
         int getCurrentPoints() { return CurrentPoints; }
         //
         int getRoundPoints(int round) { return RoundPoints[round]; }
         //
         char getRoundAction(int round) { return RoundAction[round]; }
         //
-        int getRoundAtackedPlayer(int round) { return RoundAtackedPlayer[round]; }
-        //
-        string getPlayerNameF() { return Details[0]; }
+        string getRoundAtackedPlayer(int round) { return RoundAtackedPlayer[round]; }
 };
 //
 void printHeader(int round) {
@@ -160,17 +163,23 @@ void Game() {
     //
     bool stayG = true;
     bool stayR = true;
-    bool stayT = true;
     //
     Player Oscar, Ariadna, Ivan, JiaYi, Colapuerto;
     char Action;
-    string atckedPlayer;
+    int atckedPlayer;
+    string atackedPlayerF;
     //
     Oscar.setName("Oscar");
     Ariadna.setName("Ariadna");
     Ivan.setName("Ivan");
     JiaYi.setName("Jia Yi");
     Colapuerto.setName("Colapuerto");
+    //
+    Oscar.setId(1);
+    Ariadna.setId(2);
+    Ivan.setId(3);
+    JiaYi.setId(4);
+    Colapuerto.setId(5);
     //
     string Players[5] = {Oscar.getPlayerName(), Ariadna.getPlayerName(), Ivan.getPlayerName(), JiaYi.getPlayerName(), Colapuerto.getPlayerName()};
     //
@@ -179,20 +188,104 @@ void Game() {
             cout << "Que accion desea realizar " << Players[Turn] << "? (A/D)\n---> ";
             cin >> Action;
             //
+            if (Turn == 4) { stayR = false; }
+            //
             if (Action == 'A' || Action == 'a') {
-                cout << Players[Turn] << " chose to Attack\n\n";
+                cout << " Que jugador desea atacar " << Players[Turn] << "?\n    1. " << Players[Turn + 1] << "\n    2. " << Players[Turn + 2] << "\n    3. " << Players[Turn + 3] << "\n    4. " << Players[Turn + 4] << "\n---> ";
+                cin >> atckedPlayer;
                 //
-                Turn ++;
+                int aP = atckedPlayer;
+                string aPF; 
+                //
+                switch (Turn) {
+                    case 0:
+                        switch (aP) {
+                            case 1: aPF = "Ariadna"; break;
+                            case 2: aPF = "Ivan"; break;
+                            case 3: aPF = "Jia Yi"; break;
+                            case 4: aPF = "Colapuerto"; break;
+                        }
+                        //
+                        Oscar.setRoundAtackedPlayer(aPF, Round);
+                        break;
+                    //
+                    case 1:
+                        switch (aP) {
+                            case 1: aPF = "Ivan"; break;
+                            case 2: aPF = "Jia Yi"; break;
+                            case 3: aPF = "Colapuerto"; break;
+                            case 4: aPF = "Oscar"; break;
+                        }
+                        //
+                        Ariadna.setRoundAtackedPlayer(aPF, Round);
+                        break;
+                    //
+                    case 2:
+                        switch (aP) {
+                            case 1: aPF = "Jia Yi"; break;
+                            case 2: aPF = "Colapuerto"; break;
+                            case 3: aPF = "Oscar"; break;
+                            case 4: aPF = "Ariadna"; break;
+                        }
+                        //
+                        Ivan.setRoundAtackedPlayer(aPF, Round);
+                        break;
+                    //
+                    case 3:
+                        switch (aP) {
+                            case 1: aPF = "Colapuerto"; break;
+                            case 2: aPF = "Oscar"; break;
+                            case 3: aPF = "Ariadna"; break;
+                            case 4: aPF = "Ivan"; break;
+                        }
+                        //
+                        JiaYi.setRoundAtackedPlayer(aPF, Round);
+                        break;
+                    //
+                    case 4:
+                        switch (aP) {
+                            case 1: aPF = "Oscar"; break;
+                            case 2: aPF = "Ariadna"; break;
+                            case 3: aPF = "Ivan"; break;
+                            case 4: aPF = "Jia Yi"; break;
+                        }
+                        //
+                        Colapuerto.setRoundAtackedPlayer(aPF, Round);
+                        break;
+                }
+                //
+                cout << "\n" << Players[Turn] << " a elegido atacar a " << aPF << "\n\n";
+                //
+                cout << "Estas seguro? (y/n)\n---> ";
+                cin >> Confirm;
+                //
+                if (Confirm == 'y' || Confirm == 'Y') {
+                    Turn ++;
+                } else if (Confirm == 'n' || Confirm == 'N') {
+                    clearScreen();
+                    cout << "\n\n\n\nOk, reseting!\n\n\n\n";
+                    this_thread::sleep_for(chrono::seconds(3));
+                    clearScreen();
+                } else {
+                    clearScreen();
+                    //
+                    cout << "\n\n\n\nSYNTAX ERR!\nWAIT PLEASE\n\n\n\n";
+                    //
+                    this_thread::sleep_for(chrono::seconds(3));
+                    //
+                    clearScreen();
+                }
             } else if (Action == 'D' || Action == 'd') {
                 cout << "Estas seguro? (y/n)\n---> ";
                 cin >> Confirm;
                 //
                 if (Confirm == 'y' || Confirm == 'Y') {
-                    cout << Players[Turn] << " chose to Defend\n\n";
+                    cout << Players[Turn] << " a decidido defenderse\n\n";
                     //
                     Turn ++;
                 } else if (Confirm == 'n' || Confirm == 'N') {
-                    cout << "Ok, reseting! \n";
+                    clearScreen();
+                    cout << "\n\n\n\nOk, reseting!\n\n\n\n";
                     this_thread::sleep_for(chrono::seconds(3));
                     clearScreen();
                 } else {
@@ -213,14 +306,23 @@ void Game() {
                 //
                 clearScreen();
             }
+            //
+            clearScreen();
         }
     }
+    //
+    cout << Oscar.getRoundAtackedPlayer(1) << "\n"; 
+    cout << Ariadna.getRoundAtackedPlayer(1) << "\n"; 
+    cout << Ivan.getRoundAtackedPlayer(1) << "\n"; 
+    cout << JiaYi.getRoundAtackedPlayer(1) << "\n"; 
+    cout << Colapuerto.getRoundAtackedPlayer(1) << "\n"; 
 }
 //
 int main() {
     startMenu();
     //
     Game();
+    //
     //
     return 0;
 }
