@@ -5,7 +5,14 @@ using namespace std;
 class Player {
     private:
         string Name;
+        //
+        string SpaceL;
+        string SpaceR;
+        //
+        string BotLines = "\n|------------|";
+        //
         int InitialPoints = 100;
+        int CurrentPoints = InitialPoints;
         int RoundPoints[10];
         char RoundAction[10];
         int RoundAtackedPlayer[10];
@@ -13,11 +20,17 @@ class Player {
     public:
         void setName(string name) { Name = name; }
         //
+        void setSpaceL(string spaceL) { SpaceL = spaceL; }
+        //
+        void setSpaceR(string spaceR) { SpaceR = spaceR; }
+        //
         void setRoundPoints(int roundPoints, int round) { RoundPoints[round] = roundPoints; }
         //
         void setRoundAction(char roundAction, int round) { RoundAction[round] = roundAction; }
         //
         void setRoundAtackedPlayer(int roundAtackedPlayer, int round) { RoundAtackedPlayer[round] = roundAtackedPlayer; }
+        //
+        int getCurrentPoints() { return CurrentPoints; }
         //
         int getRoundPoints(int round) { return RoundPoints[round]; }
         //
@@ -25,13 +38,85 @@ class Player {
         //
         int getRoundAtackedPlayer(int round) { return RoundAtackedPlayer[round]; }
         //
-        void printDetails() {
-            cout << "| ";
+        void makeSpaces() {
+            switch (Name.length()) {
+                case 4:
+                    SpaceL = "    ";
+                    SpaceR = SpaceL;
+                    //  Ivan
+                    break;
+                //
+                case 5:
+                    SpaceL = "    ";
+                    SpaceR = "   ";
+                    //  Oscar
+                    break;
+                //
+                case 6:
+                    SpaceL = "   ";
+                    SpaceR = SpaceL;
+                    //  Jia Yi
+                    break;
+                //
+                case 7:
+                    SpaceL = "   ";
+                    SpaceR = "  ";
+                    //  Ariadna
+                    break;
+                //
+                case 10:
+                    SpaceL = " ";
+                    SpaceR = SpaceL;
+                    //  Colapuerto
+                    break;
+                //
+                default:
+                    SpaceL = "      ";
+                    SpaceR = SpaceL;
+            }
         }
+        //
+        void printPlayerName() {
+            makeSpaces();
+            //
+            cout << "|" << SpaceL << Name << SpaceR << "|" << BotLines << "\n";
+        }
+        //
+        void printPlayerDatails() { printPlayerName(); }
 };
 //
+void printHeader(int round) {
+    //cout << "|------------|----------------Round1----------------|----------------Round2----------------|----------------Round3----------------|----------------Round4----------------|----------------Round5----------------|----------------Round6----------------|----------------Round7----------------|----------------Round8----------------|----------------Round9----------------|----------------Round10---------------|\n";
+    //cout << "|----Name----|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|\n";
+    //
+    if (round >= 1 || round <= 5) {
+        cout << "|------------|----------------Round1----------------|----------------Round2----------------|----------------Round3----------------|----------------Round4----------------|----------------Round5----------------|\n";
+        cout << "|----Name----|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|\n";
+        cout << "|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|\n";
+
+    } else if (round >= 6 || round <= 10) {
+        cout << "|------------|----------------Round6----------------|----------------Round7----------------|----------------Round8----------------|----------------Round9----------------|----------------Round10---------------|\n";
+        cout << "|----Name----|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|---Points---|---Action---|---Atacked--|\n";
+    }
+}
+//
 int main() {
-    Player;
+    Player Oscar, Ariadna, Ivan, JiaYi, Colapuerto;
+    int Round;
+    //
+    Oscar.setName("Oscar");
+    Ariadna.setName("Ariadna");
+    Ivan.setName("Ivan");
+    JiaYi.setName("Jia Yi");
+    Colapuerto.setName("Colapuerto");
+    //
+    printHeader(5);
+    //
+    Oscar.printPlayerDatails();
+    Ariadna.printPlayerDatails();
+    Ivan.printPlayerDatails();
+    JiaYi.printPlayerDatails();
+    Colapuerto.printPlayerDatails();
     //
     return 0;
 }
