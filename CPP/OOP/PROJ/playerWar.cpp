@@ -1,4 +1,6 @@
 #include <iostream>
+#include <chrono>
+#include <thread>
 //
 using namespace std;
 //
@@ -104,25 +106,50 @@ void printHeader(int round) {
     }
 }
 //
-void startMenu() {
-    cout << "|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n";
-    cout << "|                                                                                                                                                                                                               |\n";
-    cout << "|                                                                             GGGG    UU   UU   EEEEEEE   RRRRRR    RRRRRR      AAA                                                                             |\n";
-    cout << "|                                                                            GG  GG   UU   UU   EE        RR   RR   RR   RR    AAAAA                                                                            |\n";
-    cout << "|                                                                           GG        UU   UU   EEEEE     RRRRRR    RRRRRR    AA   AA                                                                           |\n";
-    cout << "|                                                                           GG   GG   UU   UU   EE        RR  RR    RR  RR    AAAAAAA                                                                           |\n";
-    cout << "|                                                                            GGGGGG    UUUUU    EEEEEEE   RR   RR   RR   RR   AA   AA                                                                           |\n";
-    cout << "|                                                                                                                                                                                                               |\n";
-    cout << "|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n";
-
-}
-//
 void clearScreen() {
     #ifdef _WIN32
         system("cls");
     #else
         system("clear");
     #endif
+}
+//
+void startMenu() {
+    char smChoice;
+    //
+    while (true) {
+        cout << "|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n";
+        cout << "|                                                                                                                                                                                                               |\n";
+        cout << "|                                                                             GGGG    UU   UU   EEEEEEE   RRRRRR    RRRRRR      AAA                                                                             |\n";
+        cout << "|                                                                            GG  GG   UU   UU   EE        RR   RR   RR   RR    AAAAA                                                                            |\n";
+        cout << "|                                                                           GG        UU   UU   EEEEE     RRRRRR    RRRRRR    AA   AA                                                                           |\n";
+        cout << "|                                                                           GG   GG   UU   UU   EE        RR  RR    RR  RR    AAAAAAA                                                                           |\n";
+        cout << "|                                                                            GGGGGG    UUUUU    EEEEEEE   RR   RR   RR   RR   AA   AA                                                                           |\n";
+        cout << "|                                                                                                                                                                                                               |\n";
+        cout << "|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n";
+        //
+        cout << "\nBienvenido Mishi! Deseas empezar? (y/n)\n---> ";
+        cin >> smChoice;
+        //
+        if (smChoice == 'y' || smChoice == 'Y') {
+            clearScreen();
+            //
+            break;
+        } else if (smChoice == 'n' || smChoice == 'N') {
+            exit(0);
+        } else {
+            while (true) {
+                clearScreen();
+                //
+                cout << "\n\n\n\nSYNTAX ERR!\nWAIT PLEASE\n\n\n\n";
+                //
+                this_thread::sleep_for(chrono::seconds(4));
+                //
+                clearScreen();
+                break;
+            }
+        }
+    }
 }
 //
 int main() {
