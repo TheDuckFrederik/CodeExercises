@@ -15,15 +15,13 @@ class Player {
         string BotLines = "\n|------------|";
         //
         string posibleAttack[4];
-        string visual[12] = {"    ----    "};
+        string Details[12] = {"", "    ----    ", "    ----    ", "    ----    ", "    ----    ", "    ----    ", "    ----    ", "    ----    ", "    ----    ", "    ----    ", "    ----    ", "    ----    "};
         //
         const int InitialPoints = 100;
         int CurrentPoints = InitialPoints;
         int RoundPoints[10];
         char RoundAction[10];
         string RoundAtackedPlayer[10];
-        //
-        string Details[12];
     //
     public:
         void setName(string name) { Name = name; }
@@ -40,7 +38,7 @@ class Player {
         //
         void setPosibleAtack(string p1, string p2, string p3, string p4) { posibleAttack[0] = p1; posibleAttack[1] = p2; posibleAttack[2] = p3; posibleAttack[3] = p4; }
         //
-        void setVisual(string thing) {  }
+        void setDetails(string thing) {  }
         //
         void setRoundAtackedPlayer(string roundAtackedPlayer, int round) { RoundAtackedPlayer[round] = roundAtackedPlayer; }
         //
@@ -95,6 +93,13 @@ class Player {
         char getRoundAction(int round) { return RoundAction[round]; }
         //
         string getRoundAtackedPlayer(int round) { return RoundAtackedPlayer[round]; }
+        //
+        void printDetails(int round) {
+            for (int i = 0; i != (round -1);) {
+                cout << Details[i];
+                i ++;
+            }
+        }
 };
 //
 void printHeader(int round) {
@@ -345,6 +350,12 @@ void Game2() {
     JiaYi.setName("Jia Yi");
     Colapuerto.setName("Colapuerto");
     //
+    Oscar.setPlayerInfo();
+    Ariadna.setPlayerInfo();
+    Ivan.setPlayerInfo();
+    JiaYi.setPlayerInfo();
+    Colapuerto.setPlayerInfo();
+    //
     Oscar.setId(1);
     Ariadna.setId(2);
     Ivan.setId(3);
@@ -353,13 +364,19 @@ void Game2() {
     //
     string Players[5] = {Oscar.getPlayerName(), Ariadna.getPlayerName(), Ivan.getPlayerName(), JiaYi.getPlayerName(), Colapuerto.getPlayerName()};
     //
+    Oscar.printDetails(10);
+    Ariadna.printDetails(10);
+    Ivan.printDetails(10);
+    JiaYi.printDetails(10);
+    Colapuerto.printDetails(10);
 }
 //
 int main() {
     startMenu();
     //
-    Game2();
+    printHeader(5);
     //
+    Game2();
     //
     return 0;
 }

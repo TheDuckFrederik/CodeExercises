@@ -14,4 +14,4 @@
 ***
 ## Projects:
 - ### [Player War](/CPP/OOP/PROJ/playerWar.cpp)
-- ### [Project 1](/CPP/OOP/PROJ/Proj1.cpp)
+- ### [Project 1](/CPP/OOP/PROJ/GUERRA.CPP)
