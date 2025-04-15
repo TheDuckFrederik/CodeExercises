@@ -14,6 +14,9 @@ class Player {
         //
         string BotLines = "\n|------------|";
         //
+        string posibleAttack[4];
+        string visual[12] = {"    ----    "};
+        //
         const int InitialPoints = 100;
         int CurrentPoints = InitialPoints;
         int RoundPoints[10];
@@ -34,6 +37,10 @@ class Player {
         void setRoundPoints(int roundPoints, int round) { RoundPoints[round] = roundPoints; }
         //
         void setRoundAction(char roundAction, int round) { RoundAction[round] = roundAction; }
+        //
+        void setPosibleAtack(string p1, string p2, string p3, string p4) { posibleAttack[0] = p1; posibleAttack[1] = p2; posibleAttack[2] = p3; posibleAttack[3] = p4; }
+        //
+        void setVisual(string thing) {  }
         //
         void setRoundAtackedPlayer(string roundAtackedPlayer, int round) { RoundAtackedPlayer[round] = roundAtackedPlayer; }
         //
@@ -155,7 +162,7 @@ void startMenu() {
     }
 }
 //
-void Game() {
+void Game1() {
     int Round = 1;
     int Turn = 0;
     //
@@ -318,10 +325,40 @@ void Game() {
     cout << Colapuerto.getRoundAtackedPlayer(1) << "\n"; 
 }
 //
+void Game2() {
+    int Round = 1;
+    int Turn = 0;
+    //
+    char Confirm;
+    //
+    bool stayG = true;
+    bool stayR = true;
+    //
+    Player Oscar, Ariadna, Ivan, JiaYi, Colapuerto;
+    char Action;
+    int atckedPlayer;
+    string atackedPlayerF;
+    //
+    Oscar.setName("Oscar");
+    Ariadna.setName("Ariadna");
+    Ivan.setName("Ivan");
+    JiaYi.setName("Jia Yi");
+    Colapuerto.setName("Colapuerto");
+    //
+    Oscar.setId(1);
+    Ariadna.setId(2);
+    Ivan.setId(3);
+    JiaYi.setId(4);
+    Colapuerto.setId(5);
+    //
+    string Players[5] = {Oscar.getPlayerName(), Ariadna.getPlayerName(), Ivan.getPlayerName(), JiaYi.getPlayerName(), Colapuerto.getPlayerName()};
+    //
+}
+//
 int main() {
     startMenu();
     //
-    Game();
+    Game2();
     //
     //
     return 0;
