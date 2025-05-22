@@ -13,4 +13,5 @@
 - ### [Exercise 8](/CPP/OOP/EX/ex8.cpp)
 ***
 ## Projects:
-- ### [Project 1](/CPP/OOP/PROJ/Proj1.cpp)
+- ### [Player War](/CPP/OOP/PROJ/playerWar.cpp)
+- ### [Project 1](/CPP/OOP/PROJ/GUERRA.CPP)
